@@ -733,8 +733,7 @@ VALUES (${oldMem.memory_id}, '${oldMem.title.replace(/'/g, "''")}', '${(oldMem.d
           : `-- (No change in title/description/date -> Trigger skipped snapshot)`,
         `UPDATE MEMORY SET title = '${formTitle.trim().replace(/'/g, "''")}', description = '${formDesc.trim().replace(/'/g, "''")}', memory_date = '${formDate}', location_id = ${resolvedLocId || 'NULL'}, emotion_id = ${resolvedEmoId || 'NULL'} WHERE memory_id = ${oldMem.memory_id} AND user_id = ${currentUserId};`,
         ...formUploadedImages.map(img => `INSERT INTO MEDIA (memory_id, file_path) VALUES (${oldMem.memory_id}, '${img.file_path}');`)
-      ].join('
-');
+      ].join('\n');
 
       appendSqlLog('Week_5.sql Trigger + UPDATE', sqlText, 'SUCCESS');
       showToast(
@@ -800,8 +799,7 @@ VALUES (${oldMem.memory_id}, '${oldMem.title.replace(/'/g, "''")}', '${(oldMem.d
         ...resolvedTagIds.map(tid => `INSERT INTO MEMORY_TAG (memory_id, tag_id) VALUES (@new_memory_id, ${tid});`),
         ...formUploadedImages.map(img => `INSERT INTO MEDIA (memory_id, file_path) VALUES (@new_memory_id, '${img.file_path}');`),
         `COMMIT;`
-      ].join('
-');
+      ].join('\n');
 
       appendSqlLog('Week_5 & Week_6 Atomic Transaction', txSql, 'SUCCESS');
       showToast('success', 'Transaction Committed', `Created Memory #${newMemoryId} with ${formUploadedImages.length} image(s) in MEDIA.`);
