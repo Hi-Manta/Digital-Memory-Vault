@@ -1,8 +1,8 @@
 {
   "name": "digital-memory-vault",
   "private": true,
-  "version": "1.0.0",
-  "description": "CSE 468 Advanced DBMS Lab Project - Digital Memory Vault (MySQL + React + FastAPI)",
+  "version": "2.0.0",
+  "description": "Digital Memory Vault — Private, Structured Personal Journal & Memory Archive",
   "type": "module",
   "scripts": {
     "dev": "vite",
